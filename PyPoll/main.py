@@ -21,15 +21,16 @@ def election_summary(poll_data):
     #Rounding percentages to 3 decimal places based on prompt
     summarized_text = f"Election Results \n ------------------------------ \
         \n Total Votes: {votes} \n ------------------------------ \
-        \n Charles Casper Stockham: {round(charles_percentage,3)}% ({charles_votes}) \n ------------------------------ \
-        \n Diana DeGette: {round(diana_percentage,3)}% ({diana_votes}) \n ------------------------------ \
-        \n Raymon Anthony Doane: {round(raymon_percentage,3)}% ({raymon_votes}) \n ------------------------------ \n"
+        \n Charles Casper Stockham: {round(charles_percentage,3)}% ({charles_votes}) \
+        \n Diana DeGette: {round(diana_percentage,3)}% ({diana_votes}) \
+        \n Raymon Anthony Doane: {round(raymon_percentage,3)}% ({raymon_votes}) \
+        \n ------------------------------ \n"
     if max(charles_votes,diana_votes,raymon_votes) == charles_votes:
-        winner = "Winner: Charles Casper Stockham"
+        winner = "Winner: Charles Casper Stockham \n ------------------------------"
     elif max(charles_votes,diana_votes,raymon_votes) == diana_votes:
-        winner = "Winner: Diana DeGette"
+        winner = "Winner: Diana DeGette \n ------------------------------"
     elif max(charles_votes,diana_votes,raymon_votes) == raymon_votes:
-        winner = "Winner: Raymon Anthony Doane"
+        winner = "Winner: Raymon Anthony Doane \n ------------------------------"
     summarized_text += winner
     print(summarized_text)
     return summarized_text
@@ -51,5 +52,5 @@ with open(poll_csv, 'r') as csvfile: #Opens CSV file as read-only
     election_summary(poll_csv) #Calls the summarizer function with the csv data
 
 with open(results_txt, 'w') as txtFile:
-    txtFile.write(str(election_summary(poll_csv)))
+    txtFile.write(election_summary(poll_csv))
     
