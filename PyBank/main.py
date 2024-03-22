@@ -41,13 +41,16 @@ with open(pybank_csv,encoding='UTF-8') as csvfile:
         prevRow = profitintValue #sets the previous row to the value in row[1] / the profit
         changeSum += profitChange
 
-def summarize_bank_data(rowCount, netProfit, changeSum, greatestprofitincDate,greatestprofitInc,greatestprofitdecDate,greatestprofitDec):
-    #Reducing the denominator in the average function because we are measuring changes not rows  
-    summary = f"\n Total Months: {(rowCount)} \
-    \n Net Profit: ${netProfit} \
-    \n Average Change: ${round(average(changeSum,(rowCount-1)),2)} \
-    \n Greatest Increase in Profits: {greatestprofitincDate} (${greatestprofitInc}) \
-    \n Greatest Decrease in Profits: {greatestprofitdecDate} (${greatestprofitDec})" #Function that returns summary, the string of summarized data
+def summarize_bank_data(rowCount, netProfit, changeSum, greatestprofitincDate,greatestprofitInc,greatestprofitdecDate,greatestprofitDec): #Function that returns summary, the string of summarized data
+    #Reducing the denominator when using the average function because we are measuring changes not rows, there was no "change" in the first row 
+    summary = f"Financial Analysis \n \
+---------------------------- \n \
+Total Months: {(rowCount)} \
+\n Net Profit: ${netProfit} \
+\n Average Change: ${round(average(changeSum,(rowCount-1)),2)} \
+\n Greatest Increase in Profits: {greatestprofitincDate} (${greatestprofitInc}) \
+\n Greatest Decrease in Profits: {greatestprofitdecDate} (${greatestprofitDec})"
+             
     print(summary) #Prints output in terminal
     return(summary) #Returns summary so we can reference it when building text file
 
